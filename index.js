@@ -83,15 +83,26 @@ app.get('/signup', (req, res) => {
 
 app.post('/signup', async (req, res) => {
     const { username, email, password } = req.body;
+
     try {
         if (!username || !email || !password) {
             return res.render('signup', { error: 'All fields are required', username, email });
         }
+
+        if (password.length < 8) {
+            return res.render('signup', { 
+                error: 'Password must be at least 8 characters long', 
+                username, 
+                email 
+            });
+        }
+
         const existingUser = await User.findOne({ $or: [{ username }, { email }] });
         if (existingUser) {
             let message = existingUser.username === username ? 'Username already taken' : 'Email already registered';
             return res.render('signup', { error: message, username, email });
         }
+
         const user = new User({ username, email, password });
         await user.save();
         req.login(user, (err) => {
@@ -108,13 +119,25 @@ app.get('/login', (req, res) => {
     res.render('login', { email: '', error: '' });
 });
 
-app.post('/login',
-    passport.authenticate('local', {
-        successRedirect: '/notes',
-        failureRedirect: '/login',
-        failureFlash: false
-    })
-);
+app.post('/login', async (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) return next(err);
+
+        if (!user) {
+            // Send error to template
+            return res.render('login', {
+                error: info.message || 'Invalid email or password',
+                email: req.body.email
+            });
+        }
+
+        req.logIn(user, (err) => {
+            if (err) return next(err);
+            return res.redirect('/notes');
+        });
+    })(req, res, next);
+});
+
 
 app.post('/logout', (req, res) => {
     req.logout(() => res.redirect('/login'));
