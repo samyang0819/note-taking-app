@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= note.title %> - My Notes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="container mt-4">
+        <div class="card note-card p-3 note-color-0">
+            <div class="card-body">
+                <h2><%= note.title %></h2>
+                <p><%= note.content %></p>
+                <a href="/notes/<%= note._id %>/edit" class="btn btn-warning">Edit</a>
+                <button id="deleteBtn" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <script>
+        document.getElementById('deleteBtn').addEventListener('click', async () => {
+            const confirmed = confirm("Are you sure you want to delete this note?");
+            if (!confirmed) return;
+
+            const res = await fetch(`/notes/<%= note._id %>`, { method: 'DELETE' });
+            if (res.ok) {
+                window.location.href = '/notes';
+            } else {
+                alert('Failed to delete note');
+            }
+        });
+    </script>
+</body>
+</html>

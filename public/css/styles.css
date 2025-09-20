@@ -1,0 +1,130 @@
+body {
+  background-color: #f3f4f6;
+  color: #111827;
+  font-family: "Segoe UI", sans-serif;
+}
+
+header {
+  background-color: #4f46e5;
+  color: #ffffff;
+}
+
+header h1 {
+  margin: 0;
+}
+
+.nav-link {
+  color: #ffffff !important;
+}
+
+.nav-link:hover {
+  color: #fbbf24 !important;
+}
+
+.btn-primary {
+  background-color: #4f46e5;
+  border-color: #4f46e5;
+}
+
+.btn-primary:hover {
+  background-color: #3730a3;
+  border-color: #3730a3;
+}
+
+.btn-warning {
+  background-color: #fbbf24;
+  border-color: #fbbf24;
+  color: #111827;
+}
+
+.btn-danger {
+  background-color: #ef4444;
+  border-color: #ef4444;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.alert-danger {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.alert-success {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+/* in /public/css/styles.css */
+.note-color-0 {
+  background-color: #ffd6d6;
+}
+.note-color-1 {
+  background-color: #d6f7ff;
+}
+.note-color-2 {
+  background-color: #d6ffd8;
+}
+
+.add-note-btn {
+  background-color: #ffd966; /* soft yellow */
+  color: #333;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.add-note-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  color: #333;
+}
+
+body {
+  background-color: #f0f4f8;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Header / banner image */
+.header-banner {
+  display: block;
+  margin: 20px auto;
+  max-width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Add Note button */
+.add-note-btn {
+  background-color: #ffd966; /* soft yellow */
+  color: #333;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.add-note-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  color: #333;
+}
+
+/* Notes styling */
+.note-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+.note-card:hover {
+  transform: translateY(-5px);
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Note</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="container mt-4">
+        <h2>Edit Note</h2>
+        <form id="editNoteForm">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" value="<%= note.title %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea class="form-control" id="content" rows="5" required><%= note.content %></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">Update Note</button>
+        </form>
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <script>
+        document.getElementById('editNoteForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+
+            const res = await fetch(`/notes/<%= note._id %>`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title, content })
+            });
+
+            if (res.ok) {
+                window.location.href = '/notes';
+            } else {
+                alert('Failed to update note');
+            }
+        });
+    </script>
+</body>
+</html>
